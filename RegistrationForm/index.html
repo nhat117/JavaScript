@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./hi.css">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="main">
+    <form action="" method="POST" class="form" id="form-1">
+        <h3 class="heading">User Registration</h3>
+        <p class="desc">Registration information 🙆‍♂️🙆‍♂️</p>
+
+        <div class="spacer"></div>
+
+        <div class="form-group">
+            <label for="fullname" class="form-label">Tên đầy đủ</label>
+            <input id="fullname" name="fullname" type="text" placeholder="VD: Sơn Đặng" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+            <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+            <span class="form-message"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="province" class="form-label">Province</label>
+            <!--            <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"-->
+            <!--                   type="password" class="form-control">-->
+
+            <select id="province" name="province" class="form-control form-province-selector">
+                <option value="">--Chọn tỉnh thành phố</option>
+                <option value="hni">Hà Nội</option>
+                <option value="hcm">Hồ Chí Minh</option>
+            </select>
+
+            <span class="form-message"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="password_confirmation" class="form-label">Gender</label>
+            <!--            <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu"-->
+            <!--                   type="password" class="form-control">-->
+            <div class="align-center">
+                <input name="gender" type="radio" value="male" class="form-control form__radio">
+                Male
+            </div>
+            <div class="align-center">
+                <input name="gender" type="radio" value="female" class="form-control form__radio">
+                Female
+            </div>
+            <div class="align-center">
+                <input name="gender" type="radio" value="other" class="form-control form__radio">
+                Non Binary
+            </div>
+            <span class="form-message"></span>
+        </div>
+        `
+        <button class="form-submit">Đăng ký</button>
+    </form>
+</div>
+
+<script src="./validator.js"></script>
+
+<script>
+    // Inline validator
+    Validator(
+        {
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                // Validator.isRequired('#fullname','Fullname is required'),
+                // Validator.isRequired('#email', 'Email is required'),
+                // Validator.isEmail('#email', 'Not a valid email format'),
+                // Validator.isRequired('#password', 'password is required'),
+                // Validator.minLength('#password', 6, 'password must be at least 6 characters'),
+                // Validator.isRequired('#password_confirmation', 'password is required'),
+                Validator.isRequired('input[name="gender"]', 'Gender is required'),
+                Validator.isRequired('#province', 'Province is required'),
+                // Validator.isConfirmed('#password_confirmation',()=>{
+                //     return document.querySelector('#form-1 #password').value;
+                // },'password not match')
+            ],
+            onSubmit: (data) => {
+                //Call API
+                console.log(data);
+            }
+        });
+</script>
+</body>
+</html>
