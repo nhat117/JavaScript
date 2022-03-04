@@ -177,7 +177,29 @@
 //     });
 //     return res;
 // }
+
+
+// let array = [1,2,3,4,5];
+// let initial = 10;
 //
+// Array.prototype.myReduce = function (callBack,res){
+//     let i = 0;
+//     //Incase only 1 argument
+//     if(arguments.length < 2){
+//         res = this[0];
+//         i = 1;
+//     }
+//     for( i ; i < this.length; i++) {
+//         res = callBack(res,this[i],i,this);
+//     }
+//     return res;
+// }
+//
+// let res = array.myReduce((total, num) =>{
+//     return total + num;
+// },10);
+// console.log(typeof (res));
+// console.log(res);
 // //Storing variable
 // //Storage
 //
@@ -393,61 +415,254 @@
 //         }
 //     });
 // }
-
-let ele = document.querySelector('div');
-ele.addEventListener('click',(e)=>{
-    console.log('DIV');
-});
-ele = document.querySelector('button');
-ele.addEventListener('click',(e)=>{
-    e.stopPropagation(); //Prevent noi bot
-    console.log('Button');
-})
-
-// ele.addEventListener('mousedown', (e)=>{
-//     e.preventDefault();
+//
+// let ele = document.querySelector('div');
+// ele.addEventListener('click',(e)=>{
+//     console.log('DIV');
+// });
+// ele = document.querySelector('button');
+// ele.addEventListener('click',(e)=>{
+//     e.stopPropagation(); //Prevent noi bot
+//     console.log('Button');
+// // })
+//
+// // ele.addEventListener('mousedown', (e)=>{
+// //     e.preventDefault();
+// // });
+// //
+// // ele.addEventListener('click',(e)=>{
+// //     console.log(e.target);
+// // });
+//
+// //1.Event Listener -or Dom Event ? /
+// //Lang nge/Huy bo lang nghe
+// let btn = document.querySelector('button');
+// btn.addEventListener('click',()=>{
+//     //Viec 1
+//     console.log("Viec1");
 // });
 //
-// ele.addEventListener('click',(e)=>{
-//     console.log(e.target);
+// btn.addEventListener('click',()=>{
+//     //Viec 2
+//     console.log("Viec 2");
 // });
+//
+// btn.addEventListener('click',viec1);
+// btn.addEventListener('click',viec2);
+// setTimeout(()=>{
+//     // Huy bo lang nghe
+//     btn.removeEventListener('click',viec1);
+// },3000);
+//
+// function viec1() {
+//     console.log('1');
+// }
+//
+// function viec2() {
+//     console.log('2');
+// }
 
-//1.Event Listener -or Dom Event ? /
-//Lang nge/Huy bo lang nghe
-let btn = document.querySelector('button');
-btn.addEventListener('click',()=>{
-    //Viec 1
-    console.log("Viec1");
-});
+//2.JSON: Là một định dang dữ liệu: Chuỗi
+//JavaScript Object Notation
+//JSON: Number, Boolean, Null, Array, Object
 
-btn.addEventListener('click',()=>{
-    //Viec 2
-    console.log("Viec 2");
-});
+//Encode - Decode
+//Stringify /Parse JavaScript Type -> JSON
+//Parse: json -> JavaScript Type
 
-btn.addEventListener('click',viec1);
-btn.addEventListener('click',viec2);
-setTimeout(()=>{
-    // Huy bo lang nghe
-    btn.removeEventListener('click',viec1);
-},3000);
-
-function viec1() {
-    console.log('1');
-}
-
-function viec2() {
-    console.log('2');
-}
-
-//2.JSON
+// let jsonObject = '{"name":"Nhat Bui","age": 23}' ;
+// let jsonArray = '["name","tommy"]';
+// console.log(typeof (JSON.parse(jsonObject)));
+// console.log(JSON.parse(jsonObject));
+//
+//
+// console.log(typeof (JSON.parse(jsonArray)));
+// console.log(JSON.parse(jsonArray));
+//
+// //Stringify
+//
+// console.log(typeof (JSON.stringify(
+//     ['JavaScript','PHP']
+// )));
+//
+// console.log(typeof (JSON.stringify(
+//     {name: 'Nhat Bui','age': 23}
+// )));
 
 
+//Promise
+//Sync: Chay theo tuan tu
+
+//Sleep -> console.log(2) : Async
+// setTimeout(()=>{
+//     console.log(1);
+// }, 1000);
+// console.log(2);
+
+//ASync:
+//SetTimeout, setInterval, fetch, XMLHTTPRequest, file reading
+//Request Animation
+
+//Call Back: Xu ly thao tac bat dong back
+
+//Noi Dau :
+
+//CallBack Hell
+//Pyramid of doom
+// setTimeout(() =>{
+//     let i = 1;
+//     console.log(i);
+//     setTimeout(()=>{
+//         i ++;
+//         console.log(i);
+//         setTimeout(()=>{
+//             i++;
+//             console.log(i);
+//         },1000);
+//     },1000);
+// },1000);
+
+//Promise How to write a Promise - use when in hell - when dealing wihth async task
+//1.New Promise
+//2.Exevutor
+
+//2 state
+// 1.Pendding
+//2.Fulfilled promise.resolve -.then
+//3.reject()  promise .reject -. catch
+// let promise = new Promise(
+//     //Executor need 2 variable as a function
+//     (resolve, reject) => {
+//         //Logic
+//         //Thanh Cong -> resolve
+//         //That bai -> reject
+//         // resolve([{
+//         //     id: 1,
+//         //     name: 'JavaScript'
+//         // }]);
+//         // reject('Error 404');
+//         resolve();
+//     }
+// );
+
+// Chainning
+//Recive data from previous then
+//If the first then is not return promise, next the will receive the return data
+//Else it will execute inside the promise and return the promise
+// promise.then(()=>{
+//     console.log(1);
+//     return 1;
+// }).then((i)=>{
+//      i ++;
+//     console.log(i);
+//     return i;
+// }).then((i)=>{
+//      i++;
+//      console.log(i);
+//      return i;
+// }).then((i)=>{
+//     i ++;
+//     console.log(i)
+//     console.log('Done');
+// })
+//     .catch((error)=>{
+//         console.log(error);
+//     })
+//     .finally(()=>{
+//         console.log('Finally')
+//     })
+
+// promise.then(()=>{
+//     return new Promise((resolve, reject) =>{
+//         setTimeout(()=>{
+//             resolve([1,2,3])
+//         },3000)
+//     })
+// }).then((data) =>{
+//     //Recieve [1,2,3] array return from the above mention data;
+//     console.log(data);
+// }).catch(()=>{
+//     console.log('error');
+// }).finally(()=>{
+//     console.log('Done');
+// })
+//
+// function sleep(ms) {
+//     return new Promise((resolve)=>{
+//         setTimeout(resolve,ms);
+//     });
+// }
+//
+// sleep(1000).then(
+//     ()=>{
+//         console.log(1);
+//         return sleep(1000);
+//     }
+// ).then(
+//     ()=>{
+//         console.log(2);
+//         return new Promise((resolve, reject) =>{
+//             // reject('Error !!');
+//         })
+//     }
+// ).then(
+//     ()=>{
+//         console.log(3);
+//         return sleep(1000);
+//     }
+// ).then(
+//     ()=>{
+//         console.log(4);
+//         return sleep(1000);
+//     }
+// ).catch((err)=>{
+//     console.log(err);
+// })
+
+//promise.reject
+//promise.all
+//Return a new Promise
+// let promise2 = Promise.resolve('Okay');
+
+//Library output always a promise
+
+// let promise2 = Promise.reject('Error');
+//
+// promise2.then((res)=>{
+//     console.log('result', res);
+// }).catch((err)=>{
+//     console.log('error', err);
+// })
+
+//promise.all run parallel of 2 promise
+
+let promise1 = new Promise(
+    (resolve)=>{
+        setTimeout(()=>{
+            resolve([1]);
+        },2000);
+    }
+)
 
 
+// let promise2 = new Promise(
+//     (reject)=>{
+//         // setTimeout(()=>{
+//         //     // resolve([2,3]);
+//         //
+//         // },5000);
+//         reject('error');
+//     }
+// )
 
+let promise2 = Promise.reject('error');
 
-
+Promise.all([promise1, promise2]).then((res)=>{
+    let result = res[0].concat(res[1]);
+    console.log(result);
+}).catch((err)=>{
+    console.log(err);
+})
 
 
 
