@@ -64,3 +64,42 @@ body{
 
 /*Component*/
 
+.testimonial_item {
+    font-size: var(--fs-400);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 2.5rem 3.75rem 3rem -3rem hsl(var(--clr-secondary-400) / 0.25);
+}
+
+.testimonial_item.quote {
+    background-image: url("./images/bg-pattern-quotation.svg");
+    background-repeat: no-repeat;
+    background-position: top right 10%;
+}
+
+.testimonial__item-image {
+    width: 1.75rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.testimonial__item-name {
+    font-size: var(--fs-400);
+    font-weight: var(--fw-400);
+    line-height: 1;
+}
+
+.testimonial__item-position {
+    font-size: var(--fs-300);
+    opacity: 0.5;
+}
+
+.testimonial__body-text:first-of-type {
+
+    font-size: var(--fs-500);
+    line-height: 1.2;
+}
+
+.testimonial__body-text:last-of-type {
+    opacity: 0.7;
+}
